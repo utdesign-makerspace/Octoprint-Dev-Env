@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  octoprint:
+    image: octoprint/octoprint:latest
+    container_name: octoprint
+    volumes:
+      - ./data/octoprint:/octoprint
+    ports:
+      - 80:80
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    volumes:
+      - ./data/mosquitto:/mosquitto
+    ports:
+      - 1883:1883
+  openldap:
+    image: docker.io/bitnami/openldap:2.5
+    container_name: openldap
+    ports:
+      - 1389:1389
+      - 1636:1636
+    environment:
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=test1234
+      - LDAP_USERS=user01,user02
+      - LDAP_PASSWORDS=password1,password2
+    volumes:
+      - ./data/openldap:/bitnami/openldap
