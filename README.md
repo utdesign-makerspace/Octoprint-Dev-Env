@@ -7,4 +7,5 @@ This is an aproximated environment to properly test and debug octoprint plugins 
 Octoprint login:
 
 Username: admin
+
 Password: test1234
